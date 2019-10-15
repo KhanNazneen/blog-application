@@ -30,7 +30,8 @@ export class AuthComponent {
     onLogin() {
         const {email, password} = this.loginForm.value;
         if (this.loginForm.invalid) {
-            return;
+          this.toastr.error('Please check that fields are correctly filled in', 'Error!!!');
+          return;
         }
 
         this.authService.login(email, password)

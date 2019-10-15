@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Blog } from './blog';
 import { environment } from './../../environments/environment';
+import { map } from 'rxjs/operators';
 
 const BACKEND_URI = environment.apiUrl + '/blogs';
 
@@ -16,7 +17,7 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   getAllBlogs(): Observable<Blog> {
-    return this.http.get<Blog>(`${BACKEND_URI}/all`);
+    return this.http.get<Blog>(`${BACKEND_URI}/all`)
   }
 
   getBlogById(id: string): Observable<Blog> {
