@@ -9,9 +9,9 @@
 
 # dependencies
 /node_modules
-/environments/
-/config/
-*.zip
+src/environments/
+backend/config
+backend/backend.zip
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
