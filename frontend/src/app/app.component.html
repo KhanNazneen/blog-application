@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="container-fluid header" style="text-align:center">
+    <h1>Blog Application</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['/welcome']">BlogApp</a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button" data-toggle="collapse"
+      data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/blogs']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/create']">Post a blog</a>
+        </li>
+      </ul>
+      <div>
+          <ul class="navbar-nav">
+              <div *ngIf="!loggedIn(); else logoutTemplate">
+                  <li class="form-inline my-2 my-lg-0">
+                      <a class="btn btn-outline-primary mr-sm-2" [routerLink]="['/auth/login']">Login</a>
+                      <a class="btn btn-outline-primary my-2 my-sm-0" [routerLink]="['/auth/register']">Sign Up</a>
+                  </li>
+              </div>
+
+              <ng-template #logoutTemplate>
+                  <li class="nav-item ml-auto">
+                    <a class="nav-link" style="cursor: pointer;" (click)="logout()">LOGOUT</a>
+                  </li>
+              </ng-template>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+
+

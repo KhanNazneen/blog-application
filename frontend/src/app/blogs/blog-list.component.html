@@ -1,0 +1,21 @@
+<br>
+<br>
+<br>
+<div *ngIf="showDiv">
+<div class="row mx-auto">
+        <div class="col-sm-6 col-md-4" *ngFor='let blog of blogs.data'>
+            <div class="card" style="width: 18rem; text-align: center">
+                <div class="card-header">
+                    {{blog.title | uppercase}}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{blog.bodyHtml | slice:0:100}}</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text">{{blog.author}}</p>
+                    <a class="btn btn-primary" [routerLink]="['/blog', blog.blogId]">Read</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

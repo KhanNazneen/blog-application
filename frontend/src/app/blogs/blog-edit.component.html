@@ -1,0 +1,35 @@
+<div class="container">
+    <h3>Edit this blog</h3>
+    <div class="row" style="text-align:left">
+      <div class="col-md-12">
+        <form [formGroup]="blogForm" (ngSubmit)="onUpdate()">
+
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" class="form-control" formControlName="title">
+            </div>
+
+            <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control" formControlName="description">
+            </div>
+
+            <div class="form-group">
+                <label for="">Blog Body</label>
+                <textarea class="form-control" formControlName="bodyHtml"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            <button class="btn btn-outline-secondary mr-3"
+                        style="width:80px;"
+                        type="button"
+                        title="Cancel your edits"
+                        [routerLink]="['/blogs']">
+                    Cancel
+            </button>
+
+        </form>
+    </div>
+</div>
+
+

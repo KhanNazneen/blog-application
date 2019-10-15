@@ -1,0 +1,22 @@
+<div class="container text-center" *ngIf='blog'>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <h2>{{blog.data.title | uppercase}}</h2>
+      <p><small> posted by </small>{{blog.data.author}} <small> on {{blog.data.created | date}}</small></p>
+      <hr>
+      <div [innerHtml]="blog.data.bodyHtml"></div>
+      <hr>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col" *ngIf="isLoggedIn && isCreator === blog.data.creator">
+      <a class="btn btn-primary" [routerLink]="['/blog/edit', blog.data.blogId]">Edit</a>
+    </div>
+    <div class="col" *ngIf="isLoggedIn && isCreator === blog.data.creator">
+        <a class="btn btn-danger" (click)="deleteBlog()" [routerLink]="['/blog/delete', blog.data.blogId]">Delete</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-warning" [routerLink]="['/blogs']">Go Back</a>
+    </div>
+  </div>
+</div>

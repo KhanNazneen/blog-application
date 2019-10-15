@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PSWD": "bqegP7MNaPDwy9fJ",
+    "JWT_KEY": "someVeryRandomStringThatNobodyCanGuess"
+  }
+}
