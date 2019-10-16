@@ -41,7 +41,7 @@ export class BlogCreateComponent {
     };
 
     if (this.createBlogForm.invalid) {
-      this.toastr.error('Can not submit with empty form field', 'Failed!');
+      this.toastr.error('Can not submit with empty form field(s)', 'Failed!');
       return;
     }
 

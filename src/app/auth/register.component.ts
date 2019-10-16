@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
 
     onSignUp() {
         if (this.signUpForm.invalid) {
-            return;
+          this.toastr.error('Please fill the form, can not submit the empty form', 'Error!');
+          return;
         }
 
         this.authService.signUp(this.signUpForm.value)

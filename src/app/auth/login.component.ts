@@ -33,6 +33,7 @@ export class AuthComponent {
     onLogin() {
       const {email, password} = this.loginForm.value;
       if (this.loginForm.invalid) {
+        this.toastr.error('Please fill all the required fields', 'Error!');
         return;
       }
 
