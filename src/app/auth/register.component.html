@@ -1,29 +1,68 @@
 <br>
 <br>
 <div class="row justify-content-center">
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" formControlName="firstName">
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" formControlName="lastName">
-            </div>
-            <div class="form-group">
-            <label>Email address</label>
-            <input type="email" class="form-control" formControlName="email">
-            </div>
-            <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control"formControlName="password">
-            </div>
-            <div class="form-group">
-                <label>Mobile Number</label>
-                <input type="text" class="form-control" formControlName="mobileNumber">
-            </div>
-            <button class="btn btn-primary" type="submit">Sign Up</button>
-        </form>
-    </div>
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+      <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" formControlName="firstName">
+          <div class="invalid-feedback d-block"
+            *ngIf="firstName.errors && (firstName.dirty || firstName.touched)"
+          >
+          <p *ngIf="signUpForm.controls['firstName'].errors.required">First name is required</p>
+          <p *ngIf="signUpForm.controls['firstName'].errors.minlength">First name must be 3 characters long</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName">
+          <div class="invalid-feedback d-block"
+          *ngIf="lastName.errors && (lastName.dirty || lastName.touched)"
+          >
+          <p *ngIf="signUpForm.controls['lastName'].errors.required">Last name is required</p>
+          <p *ngIf="signUpForm.controls['lastName'].errors.minlength">Last name must be 3 characters long</p>
+        </div>
+      </div>
+      <div class="form-group">
+      <label>Email address</label>
+      <input type="email" class="form-control" formControlName="email">
+      <div class="invalid-feedback d-block"
+          *ngIf="email.errors && (email.dirty || email.touched)"
+        >
+          <p *ngIf="signUpForm.controls['email'].errors.required">Email is required</p>
+          <p *ngIf="signUpForm.controls['email'].errors.email">Ex: example@test.com</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div class="invalid-feedback d-block"
+          *ngIf="password.errors && (password.dirty || password.touched)"
+        >
+          <p *ngIf="signUpForm.controls['password'].errors.required">Password is required</p>
+          <p *ngIf="signUpForm.controls['password'].errors.minlength">Password must be 8 characters long</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="text" class="form-control" formControlName="mobileNumber">
+          <div class="invalid-feedback d-block"
+            *ngIf="mobileNumber.errors && (mobileNumber.dirty || mobileNumber.touched)"
+          >
+            <p *ngIf="signUpForm.controls['mobileNumber'].errors.required">Mobile Number is required</p>
+            <p *ngIf="signUpForm.controls['mobileNumber'].errors.pattern">Mobile Number must be 10 digits long</p>
+          </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </form>
+  </div>
 </div>
+
+<!-- [ngClass]="{
+  'is-invalid': signUpForm.controls['password'].invalid && signUpForm.controls['password'].dirty,
+  'is-valid': signUpForm.controls['password'].valid && signUpForm.controls['password'].dirty
+  }" -->

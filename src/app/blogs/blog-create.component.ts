@@ -27,6 +27,11 @@ export class BlogCreateComponent {
     });
   }
 
+  get title() {  return this.createBlogForm.get('title'); }
+  get description() {  return this.createBlogForm.get('description'); }
+  get bodyHtml() {  return this.createBlogForm.get('bodyHtml'); }
+  get fullName() {  return this.createBlogForm.get('fullName'); }
+
   onPost() {
     const blog = {
       title: this.createBlogForm.value.title,

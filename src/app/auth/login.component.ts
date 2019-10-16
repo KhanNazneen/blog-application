@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -27,19 +27,21 @@ export class AuthComponent {
         });
     }
 
-    onLogin() {
-        const {email, password} = this.loginForm.value;
-        if (this.loginForm.invalid) {
-          this.toastr.error('Please check that fields are correctly filled in', 'Error!!!');
-          return;
-        }
+    get email() {  return this.loginForm.get('email'); }
+    get password() {  return this.loginForm.get('password'); }
 
-        this.authService.login(email, password)
-            .subscribe(
-                () => {
-                    this.toastr.success('Successfully logged in', 'Success!');
-                    this.router.navigate(['/blogs']);
-                }
-            );
+    onLogin() {
+      const {email, password} = this.loginForm.value;
+      if (this.loginForm.invalid) {
+        return;
+      }
+
+      this.authService.login(email, password)
+        .subscribe(
+            () => {
+                this.toastr.success('Successfully logged in', 'Success!');
+                this.router.navigate(['/blogs']);
+            }
+        );
     }
 }

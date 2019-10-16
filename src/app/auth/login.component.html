@@ -6,10 +6,20 @@
             <div class="form-group">
                 <label>Email address</label>
                 <input type="email" class="form-control" formControlName="email">
+                <div class="invalid-feedback d-block"
+                  *ngIf="email.errors && (email.dirty || email.touched)"
+                >
+                  <p *ngIf="loginForm.controls['email'].errors.required">Email is required</p>
+                </div>
             </div>
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control"formControlName="password">
+                <div class="invalid-feedback d-block"
+                  *ngIf="password.errors && (password.dirty || password.touched)"
+                >
+                  <p *ngIf="loginForm.controls['password'].errors.required">Password is required</p>
+                </div>
             </div>
             <button class="btn btn-primary" type="submit">Log In</button>
         </form>

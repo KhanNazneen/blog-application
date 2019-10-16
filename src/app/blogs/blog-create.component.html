@@ -2,36 +2,54 @@
 <br>
 
 <form [formGroup]="createBlogForm" (ngSubmit)="onPost()">
-  
+
   <div class="form-group">
     <label for="">Title</label>
     <input type="text" class="form-control" formControlName="title">
+    <div class="invalid-feedback d-block"
+      *ngIf="title.errors && (title.dirty || title.touched)"
+    >
+        <p *ngIf="createBlogForm.controls['title'].errors.required">Title is required</p>
+    </div>
   </div>
 
   <div class="form-group">
-      <label for="">Description</label>
-      <input type="text" class="form-control" formControlName="description">
+    <label for="">Description</label>
+    <input type="text" class="form-control" formControlName="description">
+    <div class="invalid-feedback d-block"
+      *ngIf="description.errors && (description.dirty || description.touched)"
+    >
+      <p *ngIf="createBlogForm.controls['description'].errors.required">Description is required</p>
+    </div>
   </div>
 
   <div class="form-group">
-      <label for="">Blog Body</label>
-      <textarea class="form-control" rows="3" formControlName="bodyHtml"></textarea>
+    <label for="">Blog Body</label>
+    <textarea class="form-control" rows="3" formControlName="bodyHtml"></textarea>
+    <div class="invalid-feedback d-block"
+      *ngIf="bodyHtml.errors && (bodyHtml.dirty || bodyHtml.touched)"
+    >
+      <p *ngIf="createBlogForm.controls['bodyHtml'].errors.required">Blog body is required</p>
+    </div>
   </div>
 
   <div class="form-group">
     <label for="">Author</label>
     <input class="form-control" formControlName="fullName">
+    <div class="invalid-feedback d-block"
+      *ngIf="fullName.errors && (fullName.dirty || fullName.touched)"
+    >
+      <p *ngIf="createBlogForm.controls['fullName'].errors.required">Author name is required</p>
+    </div>
   </div>
-    
 
   <button type="submit" class="btn btn-primary">Post</button> |
   <button class="btn btn-outline-secondary mr-3"
-                  style="width:80px;"
-                  type="button"
-                  title="Cancel your edits"
-                  [routerLink]="['/blogs']">
-            Cancel
-    </button>
-
-
+          style="width:80px;"
+          type="button"
+          title="Cancel your edits"
+          [routerLink]="['/blogs']"
+  >
+    Cancel
+  </button>
 </form>

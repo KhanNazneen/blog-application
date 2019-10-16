@@ -76,19 +76,6 @@ let register = (req,res) => {
 }
 
 let login = (req,res) => {
-  let validateUserInput = () => {
-    console.log("user info",req.body.email)
-    return new Promise((resolve, reject) => {
-      if(validate.validateInput(req.body.email, req.body.password)) {
-        res.status(401).json({
-          message: "email or password is not valid"
-        })
-        reject("email or password is not valid")
-      }else {
-        resolve(req)
-      }
-    })
-  }
   // check email exist then check for password match after that generate jwt token
   let findUser = () => {
     return new Promise((resolve, reject) => {
@@ -137,8 +124,7 @@ let login = (req,res) => {
     })
   }
 
-  validateUserInput(req,res)
-    .then(findUser)
+  findUser(req,res)
     .then(validatePassword)
     .then(generateToken)
     .then(saveToken)

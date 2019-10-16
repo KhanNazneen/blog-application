@@ -21,18 +21,22 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.signUpForm = this.fb.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', Validators.required],
-            password: ['', Validators.required],
-            mobileNumber: ['', Validators.required]
+            firstName: ['', [Validators.required, Validators.minLength(3)]],
+            lastName: ['', [Validators.required, Validators.minLength(3)]],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(8)]],
+            mobileNumber: ['', [Validators.required, Validators.pattern(/^(0|91)?[6-9]\d{9}$/)]]
         });
     }
 
+    get firstName() {  return this.signUpForm.get('firstName'); }
+    get lastName() {  return this.signUpForm.get('lastName'); }
+    get email() {  return this.signUpForm.get('email'); }
+    get password() {  return this.signUpForm.get('password'); }
+    get mobileNumber() {  return this.signUpForm.get('mobileNumber'); }
+
     onSignUp() {
-        console.log(this.signUpForm.value);
-        if (!this.signUpForm.valid) {
-            this.toastr.error('Form not valid. Please check that fields are correctly filled in', 'Error!!!');
+        if (this.signUpForm.invalid) {
             return;
         }
 
